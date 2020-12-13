@@ -28,7 +28,8 @@ public class Ball : MonoBehaviour {
 
 
 	void Start() {													// --> function Start			
-		rb = GetComponent<Rigidbody>();									// Access <Rigidbody>() Component;	
+		rb = GetComponent<Rigidbody>();                                 // Access <Rigidbody>() Component;	
+		Physics.gravity = new Vector3(0, -100.8f, 0);
 		trail = GetComponent<TrailRenderer>();							// Access <TrailRenderer>() Component;	
 
 

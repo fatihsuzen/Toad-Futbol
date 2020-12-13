@@ -73,7 +73,7 @@ public class Flippers : MonoBehaviour {
 	public void  Update(){																	// --> Update
 		if(Activate){																	// if flipper is activate
 			JointSpring hingeSpring  = hinge.spring;								// Prevent lipper stuck when flipper need to go back his init position
-			hingeSpring.spring = Random.Range(1.99f,2.01f);
+			hingeSpring.spring = Random.Range(24.99f,25.01f);
 			hinge.spring = hingeSpring;
 			var motor = hinge.motor;	
 
