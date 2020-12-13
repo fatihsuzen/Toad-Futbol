@@ -194,4 +194,12 @@ public class Flippers : MonoBehaviour {
 	{
 		b_touch = false;
 	}
+	public void DownFlippers()
+	{
+		b_touch = true;
+	}
+	public void UpFlippers()
+	{
+		b_touch = false;
+	}
 }
