@@ -30,6 +30,8 @@ public class Flippers : MonoBehaviour {
 	public bool 						Down = false;					// use to if key is press when you use Input manager inputs 
 
 	private bool 						b_PullPlunger = false;			// if you pull the plunger you can't use right flippers
+
+	public bool							isBot = false;
 	
 	void Awake(){																	// --> Awake
 		Physics.IgnoreLayerCollision(8, 9, true);										// Ignore collision between Layer 8 : "Board" and Layer 9 : "Paddle"
@@ -193,5 +195,23 @@ public class Flippers : MonoBehaviour {
 	public void UpFlippersBtn()
 	{
 		b_touch = false;
+	}
+	public void DownFlippers()
+	{	
+		b_touch = true;
+	}
+	public void UpFlippers()
+	{
+		b_touch = false;
+	}
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.gameObject.tag == "Ball")
+        {
+            if (!isBot)
+            {
+				Corner.isForward = true;
+			}
+		}
 	}
 }
