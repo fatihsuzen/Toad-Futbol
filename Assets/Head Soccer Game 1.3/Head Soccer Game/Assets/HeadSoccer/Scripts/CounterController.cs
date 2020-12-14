@@ -14,12 +14,14 @@ public class CounterController : MonoBehaviour {
 	private Vector3 startingScale = new Vector3(2, 2.65f, 0.001f);
 	private Vector3 targetScale = new Vector3(3, 4, 0.001f);
 
+	public Ball ball;
 
 	void Awake () {
 		//init
 		GetComponent<Renderer>().material.mainTexture = number[0];
 		transform.localScale = startingScale;
 	}
+
 	
 
 	void Update () {
@@ -48,6 +50,7 @@ public class CounterController : MonoBehaviour {
 		yield return new WaitForSeconds(GameController.startDelay / 3);
 
 		//start the game
+		ball.StartGame();
 		Destroy (gameObject);
 	}
 

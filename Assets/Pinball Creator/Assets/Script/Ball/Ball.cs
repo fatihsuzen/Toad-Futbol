@@ -30,8 +30,9 @@ public class Ball : MonoBehaviour {
 	void Start() {													// --> function Start			
 		rb = GetComponent<Rigidbody>();                                 // Access <Rigidbody>() Component;	
 		Physics.gravity = new Vector3(0, -100.8f, 0);
-		trail = GetComponent<TrailRenderer>();							// Access <TrailRenderer>() Component;	
+		trail = GetComponent<TrailRenderer>();                          // Access <TrailRenderer>() Component;	
 
+		
 
 		roll_audio = GetComponent<AudioSource>();						// Access <AudioSource>() Component; if roll sound is selected on the inspector
 
@@ -50,28 +51,6 @@ public class Ball : MonoBehaviour {
 			= rb.velocity.normalized * maxSpeed;
 		}
 
-		if(b_trail && rb.velocity.magnitude > Speed_To_Activate_Trail)				// Enable ball trail.
-		{
-			trail.enabled=true; 
-			b_trail = false;
-		}
-		if(!b_trail && rb.velocity.magnitude < Speed_To_Activate_Trail)				// Desable ball trail.
-		{
-			trail.enabled=false; 
-			b_trail = true;
-		}
-
-		if(rb.velocity.magnitude > min_Mag_roll_audio && once)						// Play the roll sound.
-		{
-			roll_audio.Play();
-			once = false;
-		}
-		else if(rb.velocity.magnitude <= min_Mag_roll_audio && !once)				// Stop the roll sound.
-		{
-			roll_audio.Stop();
-			roll_audio.pitch = 1;
-			once = true;
-		}
 
 		if(!once && tmp_Save_Min_Mag == 0){
 			roll_audio.pitch = rb.velocity.magnitude/2.5f;							// When ball accelerate the pitch increase. 
@@ -100,18 +79,35 @@ public class Ball : MonoBehaviour {
 	public void OutsideHole(){															
 		b_OnHole = false;
 	}
-
-
-	public void OnTriggerEnter(Collider other){
-		if(other.transform.tag == "Ramp_Sound" && tmp_Save_Min_Mag == 0){
-			Debug.Log("Ramp SOund Start");
-			tmp_Save_Min_Mag = min_Mag_roll_audio;
-			min_Mag_roll_audio = 0;
+	public void StartGame()
+    {
+		int Rnd = Random.Range(0, 2);
+		int RndX = Random.Range(-1, -3);
+		int RndZ = Random.Range(-5, 5);
+		if (Rnd % 2 == 0)
+		{
+			RndX *= -1;
 		}
-		else if(other.transform.tag == "Ramp_Sound"){
-			Debug.Log("Ramp SOund Stop ");
-			min_Mag_roll_audio = tmp_Save_Min_Mag;
-			tmp_Save_Min_Mag = 0;
+
+		if (RndZ == 0)
+		{
+			RndZ = Random.Range(-5, 5);
+
+			if (RndZ == 0)
+			{
+				RndZ = Random.Range(-5, 5);
+			}
 		}
+
+		if (RndX == 0)
+		{
+			RndX = Random.Range(-10, 10);
+
+			if (RndX == 0)
+			{
+				RndX = Random.Range(-10, 10);
+			}
+		}
+		rb.AddForce(new Vector3(RndX, 0.4999999f, RndZ) * 200);
 	}
 }

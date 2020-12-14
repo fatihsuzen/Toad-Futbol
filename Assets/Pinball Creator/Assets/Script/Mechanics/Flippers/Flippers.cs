@@ -73,45 +73,12 @@ public class Flippers : MonoBehaviour {
 	}
 
 	public void  Update(){																	// --> Update
-		if(Activate){																	// if flipper is activate
+																			// if flipper is activate
 			JointSpring hingeSpring  = hinge.spring;								// Prevent lipper stuck when flipper need to go back his init position
 			hingeSpring.spring = Random.Range(24.99f,25.01f);
 			hinge.spring = hingeSpring;
 			var motor = hinge.motor;	
 
-			for (var i = 0; i < Input.touchCount; ++i) {							// --> Touch Screen part
-				if (Input.GetTouch(i).phase == TouchPhase.Began) {
-
-					Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);	// Construct a ray from the current touch coordinates
-					RaycastHit hit;
-
-					if (Physics.Raycast(ray,out hit, 100) 									// Don't move the right flippers if you pull the plnuger
-						&& (hit.transform.name == "Mobile_Collider_zl" || hit.transform.name == "Mobile_Collider")) {
-						b_PullPlunger = true;
-					}
-					else{
-						b_PullPlunger = false;
-					}
-				}
-
-
-
-				if(!b_PullPlunger && b_Flipper_Right && Input.GetTouch(i).position.x > Screen.width*.5	// know which part of the screen is touched by the player
-					&& Input.GetTouch(i).position.y < Screen.height*.6 
-                   || !b_PullPlunger && b_Flipper_Left && Input.GetTouch(i).position.x < Screen.width*.5 
-					&& Input.GetTouch(i).position.y < Screen.height*.6){
-					if (Input.GetTouch(i).phase == TouchPhase.Began ){					// if touch is detect 	
-						if(Sfx_Flipper){
-							source.volume = 1;
-							source.PlayOneShot(Sfx_Flipper);							// play a sound
-						}
-						b_touch = true;												
-					}
-					else if(Input.GetTouch(i).phase == TouchPhase.Ended){
-						b_touch = false;
-					}
-				}
-			}
 			if(!_GetButton){															// if a key is pressed
 				if(Input.GetKeyDown(name_F) && Sfx_Flipper){
 					source.volume = 1;
@@ -160,13 +127,6 @@ public class Flippers : MonoBehaviour {
 					Down = false;
 				}
 			}
-		}	
-		else if(!b_Pause){																			// --> When the table is tilted. 
-			var motor = hinge.motor;	
-			motor = hinge.motor;														//		Flipper is desactivate. But you want him to go to the init position.
-			hinge.motor = motor;
-			hinge.useMotor = false;
-		}
 	}
 
 
