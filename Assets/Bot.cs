@@ -9,7 +9,8 @@ public class Bot : MonoBehaviour
     {
         if (other.gameObject.tag == "Ball")
         {
-            flippers.UpFlippers();
+            flippers.DownFlippers();
+            Corner.isForward = false;
         }
        
     }
@@ -17,7 +18,7 @@ public class Bot : MonoBehaviour
     {
         if (other.gameObject.tag == "Ball")
         {
-            flippers.DownFlippers();
+            flippers.UpFlippers();
         }
     }
 }
