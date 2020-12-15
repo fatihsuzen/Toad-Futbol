@@ -50,7 +50,6 @@ public class Flippers : MonoBehaviour {
 	void Start() {																	// --> Start
 		hinge = GetComponent<HingeJoint>();											// Access GetComponent.<HingeJoint>()
 		StartCoroutine ("WaitToInit");
-
 	}
 
 	IEnumerator WaitToInit(){
@@ -72,7 +71,7 @@ public class Flippers : MonoBehaviour {
 		b_touch = false;	
 	}
 
-	public void  Update(){																	// --> Update
+	public void  FixedUpdate(){																	// --> Update
 																			// if flipper is activate
 			JointSpring hingeSpring  = hinge.spring;								// Prevent lipper stuck when flipper need to go back his init position
 			hingeSpring.spring = Random.Range(24.99f,25.01f);
