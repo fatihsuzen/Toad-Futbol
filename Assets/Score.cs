@@ -16,12 +16,13 @@ public class Score : MonoBehaviour
     }
     void TimeCountDown()
     {
-        Time--;
-        TimeText.text = Time.ToString();
-        if (Time<1)
+        if (Time < 1)
         {
             //GameOverUI.SetActive(true);
+            return;
         }
+        Time--;
+        TimeText.text = Time.ToString();        
     }
     public void ScoreUpdate()
     {
