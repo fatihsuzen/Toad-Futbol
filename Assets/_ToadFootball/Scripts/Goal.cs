@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
+	public Score score;
+	public bool isBot;
 	public GameObject GoalObject;
 	public Animator animator;
     private void OnTriggerEnter(Collider other)
@@ -11,7 +13,7 @@ public class Goal : MonoBehaviour
         if (other.gameObject.tag == "Ball")
         {
             GetComponent<AudioSource>().Play();
-            other.gameObject.transform.position = new Vector3(-6.06f, 0.4999999f, -7.27f);
+            other.gameObject.transform.position = new Vector3(-5.8f, 0.4999999f, -8.1f);
 
 			int Rnd = Random.Range(0, 2);
 			int RndX = Random.Range(-4, 4);
@@ -35,6 +37,15 @@ public class Goal : MonoBehaviour
 			GoalObject.SetActive(true);
 			animator.Play(0);
 
+            if (isBot)
+            {
+				score.PlayerScore++;
+			}
+			else
+            {
+				score.CpuScore++;
+			}
+			score.ScoreUpdate();
 		}
     }
 }

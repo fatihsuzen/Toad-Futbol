@@ -13,7 +13,7 @@ public class CounterController : MonoBehaviour {
 
 	private Vector3 startingScale = new Vector3(2, 2.65f, 0.001f);
 	private Vector3 targetScale = new Vector3(3, 4, 0.001f);
-
+	public static bool isStart=false;
 	public Ball ball;
 
 	void Awake () {
@@ -50,6 +50,7 @@ public class CounterController : MonoBehaviour {
 		yield return new WaitForSeconds(GameController.startDelay / 3);
 
 		//start the game
+		isStart = true;
 		ball.StartGame();
 		Destroy (gameObject);
 	}

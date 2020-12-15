@@ -50,9 +50,13 @@ public class Ball : MonoBehaviour {
 			rb.velocity 			
 			= rb.velocity.normalized * maxSpeed;
 		}
+		if (rb.velocity.magnitude < 20 && CounterController.isStart)                                       // Limit ball speed.
+		{
+			rb.velocity
+			= rb.velocity.normalized * 20;
+		}
 
-
-		if(!once && tmp_Save_Min_Mag == 0){
+		if (!once && tmp_Save_Min_Mag == 0){
 			roll_audio.pitch = rb.velocity.magnitude/2.5f;							// When ball accelerate the pitch increase. 
 		}
 
@@ -108,6 +112,6 @@ public class Ball : MonoBehaviour {
 				RndX = Random.Range(-10, 10);
 			}
 		}
-		rb.AddForce(new Vector3(RndX, 0.4999999f, RndZ) * 200);
+		rb.AddForce(new Vector3(RndX, 0.4999999f, RndZ) * 100);
 	}
 }
