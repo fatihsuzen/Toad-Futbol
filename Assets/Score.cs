@@ -10,7 +10,8 @@ public class Score : MonoBehaviour
     public int PlayerScore, CpuScore;
     public GameObject GameOverUI;
     public GameObject Ball;
-    int Time=60;
+    public GameObject ScoreBoard;
+    int Time = 60;
     void Start()
     {
         InvokeRepeating("TimeCountDown", 3, 1);
@@ -19,12 +20,13 @@ public class Score : MonoBehaviour
     {
         if (Time < 1)
         {
-            //GameOverUI.SetActive(true);
-            //Ball.SetActive(false);
+            GameOverUI.SetActive(true);
+            Ball.SetActive(false);
+            ScoreBoard.SetActive(false);
             return;
         }
         Time--;
-        TimeText.text = Time.ToString();        
+        TimeText.text = Time.ToString();
     }
     public void ScoreUpdate()
     {
