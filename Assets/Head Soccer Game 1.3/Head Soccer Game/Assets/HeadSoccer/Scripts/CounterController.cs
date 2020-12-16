@@ -34,16 +34,17 @@ public class CounterController : MonoBehaviour {
 	/// Countdown from 3 to 1.
 	/// </summary>
 	IEnumerator countdown() {
+		isStart = false;
 		runOnce = true;
 
 		StartCoroutine(animate());
 		yield return new WaitForSeconds(GameController.startDelay / 3);
-
+		isStart = false;
 		transform.localScale = startingScale;
 		StartCoroutine(animate());
 		GetComponent<Renderer>().material.mainTexture = number[1];
 		yield return new WaitForSeconds(GameController.startDelay / 3);
-
+		isStart = false;
 		transform.localScale = startingScale;
 		StartCoroutine(animate());
 		GetComponent<Renderer>().material.mainTexture = number[2];

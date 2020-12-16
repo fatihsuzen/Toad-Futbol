@@ -50,10 +50,10 @@ public class Ball : MonoBehaviour {
 			rb.velocity 			
 			= rb.velocity.normalized * maxSpeed;
 		}
-		if (rb.velocity.magnitude < 20 && CounterController.isStart)                                       // Limit ball speed.
+		if (rb.velocity.magnitude < 25 && CounterController.isStart)                                       // Limit ball speed.
 		{
 			rb.velocity
-			= rb.velocity.normalized * 20;
+			= rb.velocity.normalized * 25;
 		}
 
 		if (!once && tmp_Save_Min_Mag == 0){
