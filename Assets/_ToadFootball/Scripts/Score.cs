@@ -8,10 +8,15 @@ public class Score : MonoBehaviour
     public Text PlayerScoreText, CpuScoreText;
     public Text TimeText;
     public int PlayerScore, CpuScore;
-    public GameObject GameOverUI;
+    
     public GameObject Ball;
     public GameObject ScoreBoard;
-    int Time = 60;
+
+    public GameObject GameOverUI;
+    public Text GameOverUICpuScoreText;
+    public Text GameOverUIPlayerNameText;
+
+    int Time = 90;
     void Start()
     {
         InvokeRepeating("TimeCountDown", 3, 1);
@@ -23,6 +28,7 @@ public class Score : MonoBehaviour
             GameOverUI.SetActive(true);
             Ball.SetActive(false);
             ScoreBoard.SetActive(false);
+            EndGame();
             return;
         }
         Time--;
@@ -32,5 +38,10 @@ public class Score : MonoBehaviour
     {
         PlayerScoreText.text = PlayerScore.ToString();
         CpuScoreText.text = CpuScore.ToString();
+    }
+    void EndGame()
+    {
+        GameOverUIPlayerNameText.text = PlayerScore.ToString();
+        GameOverUICpuScoreText.text = CpuScore.ToString();
     }
 }

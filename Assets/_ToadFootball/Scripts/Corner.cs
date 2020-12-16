@@ -11,11 +11,11 @@ public class Corner : MonoBehaviour
         {
             if (isForward)
             {
-                collision.collider.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * 500);
+                //collision.collider.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.forward * 500);
             }
             else
             {
-                collision.collider.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.back * 500);
+                //collision.collider.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.back * 500);
             }
         }
     }
