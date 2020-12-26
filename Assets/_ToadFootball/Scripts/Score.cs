@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System;
 public class Score : MonoBehaviour
 {
     public Text PlayerScoreText, CpuScoreText;
@@ -16,10 +16,15 @@ public class Score : MonoBehaviour
     public Text GameOverUICpuScoreText;
     public Text GameOverUIPlayerNameText;
 
+    public Text CoinText;
+    public int Coin;
+
     int Time = 90;
+    int EndGameClaimCoin = 150;
     void Start()
     {
         InvokeRepeating("TimeCountDown", 3, 1);
+        EndGame();
     }
     void TimeCountDown()
     {
@@ -43,5 +48,21 @@ public class Score : MonoBehaviour
     {
         GameOverUIPlayerNameText.text = PlayerScore.ToString();
         GameOverUICpuScoreText.text = CpuScore.ToString();
+        GameOverClaimCoin();
+    }
+    void GameOverClaimCoin()
+    {
+        StartCoroutine(CoinCount(EndGameClaimCoin));
+    }
+    IEnumerator CoinCount(int money)
+    {        
+        while (Coin < money)
+        {
+            yield return new WaitForSeconds(0.05f);
+            Coin +=5;
+            CoinText.text = Coin.ToString();
+            
+        }
+        StopCoroutine(CoinCount(EndGameClaimCoin));
     }
 }
