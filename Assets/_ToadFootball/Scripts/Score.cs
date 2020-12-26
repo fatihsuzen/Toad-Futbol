@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using System;
 public class Score : MonoBehaviour
 {
+    public Player player;
+
     public Text PlayerScoreText, CpuScoreText;
     public Text TimeText;
     public int PlayerScore, CpuScore;
@@ -19,21 +21,24 @@ public class Score : MonoBehaviour
     public Text CoinText;
     public int Coin;
 
-    int Time = 90;
+    public Text FansText;
+    public int fans=3;
+
+    int Time = 5;
     int EndGameClaimCoin = 150;
     void Start()
     {
         InvokeRepeating("TimeCountDown", 3, 1);
-        EndGame();
     }
     void TimeCountDown()
     {
         if (Time < 1)
-        {
+        {            
             GameOverUI.SetActive(true);
             Ball.SetActive(false);
             ScoreBoard.SetActive(false);
             EndGame();
+            CancelInvoke("TimeCountDown");
             return;
         }
         Time--;
@@ -60,9 +65,15 @@ public class Score : MonoBehaviour
         {
             yield return new WaitForSeconds(0.05f);
             Coin +=5;
-            CoinText.text = Coin.ToString();
-            
+            CoinText.text = Coin.ToString();            
         }
+
+        player.SetMoney(EndGameClaimCoin);
+        player.SetFans(3);
+
+        player.MoneyUpdate();
+        player.FansUpdate();
+
         StopCoroutine(CoinCount(EndGameClaimCoin));
     }
 }
