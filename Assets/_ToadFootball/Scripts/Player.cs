@@ -2,15 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
-    public static int Money;
-    public static int Fans;
+    public static int Money = 5;
+    public static int Fans = 5;
+    public static int Gems = 5;
     public Text MoneyText;
     public Text FansText;
+    public Text GemsText;
     void Start()
     {
         Load();
+       
+        MoneyUpdate(); 
+        if (SceneManager.sceneCount==0)
+        {
+            FansUpdate();
+            GemsUpdate();
+        }        
     }
     public void SetMoney(int money)
     {
@@ -20,6 +30,10 @@ public class Player : MonoBehaviour
     {
         Fans += fans;
     }
+    public void SetGems(int gems)
+    {
+        Gems += gems;
+    }
     public void MoneyUpdate()
     {
         MoneyText.text = Money.ToString();
@@ -27,6 +41,10 @@ public class Player : MonoBehaviour
     public void FansUpdate()
     {
         FansText.text = Fans.ToString();
+    }
+    public void GemsUpdate()
+    {
+        GemsText.text = Gems.ToString();
     }
     public void Save()
     {

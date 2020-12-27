@@ -22,13 +22,16 @@ public class Score : MonoBehaviour
     public int Coin;
 
     public Text FansText;
-    public int fans=3;
+    public int Fans=3;
+
+    public Text FansTextGOUI;
 
     int Time = 5;
     int EndGameClaimCoin = 150;
     void Start()
     {
         InvokeRepeating("TimeCountDown", 3, 1);
+        player.FansUpdate();
     }
     void TimeCountDown()
     {
@@ -67,12 +70,10 @@ public class Score : MonoBehaviour
             Coin +=5;
             CoinText.text = Coin.ToString();            
         }
-
+        FansTextGOUI.text = Fans.ToString();
         player.SetMoney(EndGameClaimCoin);
-        player.SetFans(3);
-
-        player.MoneyUpdate();
-        player.FansUpdate();
+        player.SetFans(Fans);
+        
 
         StopCoroutine(CoinCount(EndGameClaimCoin));
     }
