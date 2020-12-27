@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Fans : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public List<GameObject> FanList = new List<GameObject>();
     void Start()
     {
-        InvokeRepeating("RandomAnim", Random.Range(0, 3), Random.Range(5,15));
+        //InvokeRepeating("RandomAnim", Random.Range(0, 3), Random.Range(5,15));
     }
     
     void RandomAnim()
     {
-        GetComponent<Animator>().SetInteger("Status",Random.Range(0,5));
+        //GetComponent<Animator>().SetInteger("Status",Random.Range(0,5));
     }
 }
