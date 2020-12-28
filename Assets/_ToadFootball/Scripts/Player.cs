@@ -11,16 +11,21 @@ public class Player : MonoBehaviour
     public Text MoneyText;
     public Text FansText;
     public Text GemsText;
-    void Start()
+
+    private void Awake()
     {
         Load();
-       
+
         MoneyUpdate(); 
+        FansUpdate();
+       
+    }
+    void Start()
+    {
         if (SceneManager.sceneCount==0)
         {
-            FansUpdate();
             GemsUpdate();
-        }        
+        }      
     }
     public void SetMoney(int money)
     {
